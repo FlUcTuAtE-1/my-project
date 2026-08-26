@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../router";
 import styles  from "../../styles";
 
-type Props = NativeStackScreenProps<RootStackParamList>;
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function Home({ navigation }: Props) {
   return (
@@ -12,8 +12,22 @@ export default function Home({ navigation }: Props) {
       <StatusBar barStyle="dark-content" />
       <Text>Home Screen</Text>
       <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate("Settings")}
+        title="First Item"
+        onPress={() => navigation.navigate("Details", { 
+            title: "First Item",
+            content: "This is the content for the first item.",
+            stock: 1,
+           })}
+      />
+      <Button
+        title="Second Item"
+        onPress={() => navigation.navigate("Details", 
+          { title: "Second Item" })}
+      />
+      <Button
+        title="Third Item"
+        onPress={() => navigation.navigate("Details", 
+          { title: "Third Item" })}
       />
     </View>
   );
