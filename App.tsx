@@ -1,11 +1,29 @@
+
+//introducing flexbox, react-native style
+// import { SafeAreaView } from "react-native-safe-area-context";
+// import { View, Text } from "react-native";
+// import styles from "./styles";
+
+
+// export default function App() {
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       <View style={styles.box}>
+//         <Text style={styles.boxText}>I'm in a box!</Text>
+//       </View>
+//     </SafeAreaView>
+    
+//   );  
+// }
+
+
+
+
+//styled-components
 // import React from "react";
 // import { Text, View } from "react-native";
 // import { SafeAreaView } from "react-native-safe-area-context";
-
-// import View from "react-native/types_generated/Libraries/Components/View/View";
-
-
-// import { Container, Box, BoxText } from './styles';
+// import { Container, Box, BoxText } from "./styles";
 
 // export default function App() {
 //   return (
@@ -16,9 +34,11 @@
 //     </Container>
 //   );
 // }
+
+//buidling flexbox layout
 // import React from 'react';
 // import { View , Text} from 'react-native';
-// import { styles } from './styles';
+// import {styles} from './styles';
 
 // export default function App() {
 //   return (
@@ -152,36 +172,151 @@
 // }
 
 //react-navigation
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./components/screens/Home";
-import Settings from "./components/screens/Settings";
-import Details from "./components/screens/Details";
-import {RootStackParamList} from './router';
-import { Button } from "react-native";
+// import React from "react";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import Home from "./components/screens/Home";
+// import Settings from "./components/screens/Settings";
+// import Details from "./components/screens/Details";
+// import {RootStackParamList} from './router';
+// import { Button } from "react-native";
+// const Stack = createNativeStackNavigator<RootStackParamList>();
+
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Home">
+//         <Stack.Screen name="Home" component={Home} />
+//         <Stack.Screen 
+//         name="Details" 
+//         component={Details}
+//         options={({route}) => ({
+//           headerRight: () => {
+//             return (
+//               <Button 
+//               title="Buy" 
+//               onPress={() => {}}
+//               disabled={route.params.stock === 0}
+//               />
+//             );
+//           },
+//         })} 
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
+//smarthome dashboard
+
+//without styles
+// import React from 'react';
+// import { View, Text, StyleSheet, Image } from 'react-native';
+// import { SafeAreaView } from 'react-native-safe-area-context';
+// import styles from './styles';
+
+// export default function App() {
+//   return (
+//     <SafeAreaView style={styles.safeArea}>
+//       <View style={styles.container}>
+
+//         {/* header */}
+//         <View style={styles.header}>
+//           <Text style={styles.title}>Smart Home</Text>
+//           <Image style={styles.icon} source={require('./assets/icons/settings.png')} />
+//         </View>
+
+//         {/* Temperature */}
+//         <View style={styles.temperature}>
+//           <Image style={styles.icon} source={require('./assets/icons/low-temperature.png')} />
+//           <Text style={styles.temp}>26°C</Text>
+//           <Text>Living Room</Text>
+//         </View>
+
+//         {/* First Row */}
+//         <View style={styles.deviceRow}>
+//           <View style={styles.card}>
+//             <Image style={styles.icon} source={require('./assets/icons/bulb.png')} />
+//             <Text>Light</Text>
+//             <Text>ON</Text>
+//           </View>
+
+//           <View style={styles.card}>
+//             <Image style={styles.icon} source={require('./assets/icons/air-conditioner.png')} />
+//             <Text>AC</Text>
+//             <Text>24°C</Text>
+//           </View>
+//         </View>
+
+//         {/* Second Row */}
+//         <View style={styles.deviceRow}>
+//           <View style={styles.card}>
+//             <Image style={styles.icon} source={require('./assets/icons/locked.png')} />
+//             <Text>Door</Text>
+//             <Text>LOCKED</Text>
+//           </View>
+
+//           <View style={styles.card}>
+//             <Image style={styles.icon} source={require('./assets/icons/camera.png')} />
+//             <Text>Camera</Text>
+//             <Text>ON</Text>
+//           </View>
+//         </View>
+
+//       </View>
+//     </SafeAreaView>
+//   );
+// }
+
+
+//react-navigation
+
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Dashboard from './components/screens/Dashboard';
+import Settings from './components/screens/Settings';
+import Devices from './components/screens/Devices';
+
+export type RootStackParamList = {
+  Dashboard: undefined;
+  Settings: undefined;
+  Devices: undefined;
+};
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen 
-        name="Details" 
-        component={Details}
-        options={({route}) => ({
-          headerRight: () => {
-            return (
-              <Button 
-              title="Buy" 
-              onPress={() => {}}
-              disabled={route.params.stock === 0}
-              />
-            );
-          },
-        })} 
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{
+            title: 'Smart Home',
+          }}
         />
+
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: 'Settings',
+          }}
+        />
+
+        <Stack.Screen
+          name="Devices"
+          component={Devices}
+          options={{
+            title: 'My Devices',
+          }}
+        />
+       
+
+      
       </Stack.Navigator>
     </NavigationContainer>
   );

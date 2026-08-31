@@ -1,20 +1,35 @@
-import react from "react";
-import { View, Text, Button, StatusBar } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../router";
-import styles  from "../../styles";
+import React from 'react';
+import { View, Text, Switch } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-type Props = NativeStackScreenProps<RootStackParamList>;
+import styles from '../screens/Setting.styles';
 
-export default function Settings({ navigation }: Props) {
+export default function Settings() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <Text>Settings Screen</Text>
-      <Button
-        title="Home"
-        onPress={() => navigation.navigate("Home")}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+
+        <Text style={styles.title}>
+          Settings
+        </Text>
+
+        <View style={styles.settingRow}>
+          <Text style={styles.settingText}>
+            Notifications
+          </Text>
+
+          <Switch />
+        </View>
+
+        <View style={styles.settingRow}>
+          <Text style={styles.settingText}>
+            Temperature Unit
+          </Text>
+
+          <Text>°C</Text>
+        </View>
+
+      </View>
+    </SafeAreaView>
   );
 }
